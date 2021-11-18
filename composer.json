@@ -1,0 +1,43 @@
+{
+    "name": "zorachka/error-handler",
+    "description": "Zorachka Error Handler",
+    "keywords": [
+        "zorachka",
+        "error handler"
+    ],
+    "homepage": "https://github.com/zorachka/error-handler",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Siarhei Bautrukevich",
+            "email": "hello@bautrukevich.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "filp/whoops": "^2.14",
+        "monolog/monolog": "^2.3"
+    },
+    "suggest": {
+        "zorachka/container": "For ServiceProvider interface"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zorachka\\Framework\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Zorachka\\Framework\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
