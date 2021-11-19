@@ -6,6 +6,7 @@ namespace Zorachka\Framework\ErrorHandler;
 
 use Psr\Container\ContainerInterface;
 use Whoops\Run;
+use Whoops\RunInterface;
 use Zorachka\Framework\Container\ServiceProvider;
 
 final class ErrorHandlerServiceProvider implements ServiceProvider
@@ -16,9 +17,19 @@ final class ErrorHandlerServiceProvider implements ServiceProvider
     public static function getDefinitions(): array
     {
         return [
-            ErrorHandler::class => new WhoopsErrorHandler(
-                new Run,
-            )
+            RunInterface::class => fn() => new Run,
+            ErrorHandler::class => function(ContainerInterface $container) {
+                /** @var RunInterface $run */
+                $run = $container->get(RunInterface::class);
+                /** @var ErrorHandlerConfig $config */
+                $config = $container->get(ErrorHandlerConfig::class);
+
+                return new WhoopsErrorHandler(
+                    $run,
+                    $config->catchExceptions(),
+                );
+            },
+            ErrorHandlerConfig::class => fn() => ErrorHandlerConfig::withDefaults(),
         ];
     }
 

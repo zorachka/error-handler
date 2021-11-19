@@ -10,15 +10,17 @@ use Whoops\RunInterface;
 
 final class WhoopsErrorHandler implements ErrorHandler
 {
-    private RunInterface $whoops;
-
-    public function __construct(RunInterface $whoops)
-    {
-        $this->whoops = $whoops;
-    }
+    public function __construct(
+        private RunInterface $whoops,
+        private bool $catchExceptions,
+    ) {}
 
     public function register(): void
     {
+        if (!$this->catchExceptions) {
+            return;
+        }
+
         if (self::isCli()) {
             $this->whoops->pushHandler(new PlainTextHandler);
         } else {
