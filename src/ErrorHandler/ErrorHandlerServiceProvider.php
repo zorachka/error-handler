@@ -7,7 +7,7 @@ namespace Zorachka\Framework\ErrorHandler;
 use Psr\Container\ContainerInterface;
 use Whoops\Run;
 use Whoops\RunInterface;
-use Zorachka\Framework\Container\ServiceProvider;
+use Zorachka\Container\ServiceProvider;
 
 final class ErrorHandlerServiceProvider implements ServiceProvider
 {
