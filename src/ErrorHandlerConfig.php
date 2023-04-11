@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zorachka\Framework\ErrorHandler;
+namespace Zorachka\ErrorHandler;
 
 final class ErrorHandlerConfig
 {
@@ -15,8 +15,7 @@ final class ErrorHandlerConfig
 
     public static function withDefaults(
         bool $catchExceptions = false,
-    ): self
-    {
+    ): self {
         return new self($catchExceptions);
     }
 
@@ -28,9 +27,6 @@ final class ErrorHandlerConfig
         return $new;
     }
 
-    /**
-     * @return bool
-     */
     public function catchExceptions(): bool
     {
         return $this->catchExceptions;
