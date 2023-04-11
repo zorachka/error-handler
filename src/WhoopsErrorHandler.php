@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zorachka\Framework\ErrorHandler;
+namespace Zorachka\ErrorHandler;
 
 use Whoops\Handler\PlainTextHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -13,7 +13,8 @@ final class WhoopsErrorHandler implements ErrorHandler
     public function __construct(
         private RunInterface $whoops,
         private bool $catchExceptions,
-    ) {}
+    ) {
+    }
 
     public function register(): void
     {
@@ -22,9 +23,9 @@ final class WhoopsErrorHandler implements ErrorHandler
         }
 
         if (self::isCli()) {
-            $this->whoops->pushHandler(new PlainTextHandler);
+            $this->whoops->pushHandler(new PlainTextHandler());
         } else {
-            $this->whoops->pushHandler(new PrettyPageHandler);
+            $this->whoops->pushHandler(new PrettyPageHandler());
         }
 
         $this->whoops->register();
